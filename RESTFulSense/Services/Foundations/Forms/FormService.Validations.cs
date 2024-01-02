@@ -53,6 +53,14 @@ namespace RESTFulSense.Services.Foundations.Forms
                 (Rule: IsInvalid(name), Parameter: "Name"));
         }
 
+        private static void ValidateOnAddContentHeader(MultipartFormDataContent multipartFormDataContent, string name, string value)
+        {
+            Validate(
+                (Rule: IsInvalidContent(multipartFormDataContent), Parameter: "MultipartFormDataContent"),
+                (Rule: IsInvalidContent(name), Parameter: "Name"),
+                (Rule: IsInvalid(value), Parameter: "Value"));
+        }
+
         private static dynamic IsInvalidContent(byte[] content) => new
         {
             Condition = content is null,

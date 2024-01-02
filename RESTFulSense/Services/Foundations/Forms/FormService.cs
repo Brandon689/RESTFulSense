@@ -91,5 +91,20 @@ namespace RESTFulSense.Services.Foundations.Forms
 
             return returnedMultipartFormDataContent;
         });
+
+        public MultipartFormDataContent AddContentHeader(
+            MultipartFormDataContent multipartFormDataContent,
+            string name,
+            string value) =>
+        TryCatch(() =>
+        {
+            ValidateOnAddContentHeader(multipartFormDataContent, name, value);
+
+            MultipartFormDataContent returnedMultipartFormDataContent =
+                this.multipartFormDataContentBroker
+                    .AddContentHeader(multipartFormDataContent, name, value);
+
+            return returnedMultipartFormDataContent;
+        });
     }
 }

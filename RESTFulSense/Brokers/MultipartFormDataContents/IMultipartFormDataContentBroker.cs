@@ -35,5 +35,10 @@ namespace RESTFulSense.Brokers.MultipartFormDataContents
             Stream content,
             string name,
             string fileName);
+
+        MultipartFormDataContent AddContentHeader(
+            MultipartFormDataContent multipartFormDataContent,
+            string name,
+            string value);
     }
 }

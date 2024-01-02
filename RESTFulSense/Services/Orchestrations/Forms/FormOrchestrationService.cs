@@ -37,7 +37,8 @@ namespace RESTFulSense.Services.Orchestrations.Forms
                 AddStringContents(formModel);
                 AddByteArrayContents(formModel, nameToFileNameMap);
                 AddStreamContents(formModel, nameToFileNameMap);
-
+                AddContentHeaders(formModel);
+                
                 return formModel;
             });
 
@@ -138,6 +139,21 @@ namespace RESTFulSense.Services.Orchestrations.Forms
                             value,
                             attribute.Name);
                     }
+                }
+            }
+        }
+
+        private void AddContentHeaders(FormModel formModel)
+        {
+            foreach (var property in formModel.Properties)
+            {
+                RESTFulContentHeaderAttribute attribute =
+                    this.attributeService.RetrieveAttribute<RESTFulContentHeaderAttribute>(property);
+
+                if (attribute != null)
+                {
+                    string value = (string)this.valueService.RetrievePropertyValue(formModel.Object, property);
+                    this.formService.AddContentHeader(formModel.MultipartFormDataContent, attribute.Name, value);
                 }
             }
         }

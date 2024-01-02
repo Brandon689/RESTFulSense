@@ -35,5 +35,10 @@ namespace RESTFulSense.Services.Foundations.Forms
             MultipartFormDataContent multipartFormDataContent,
             string content,
             string name);
+
+        MultipartFormDataContent AddContentHeader(
+            MultipartFormDataContent multipartFormDataContent,
+            string name,
+            string value);
     }
 }

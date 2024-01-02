@@ -2,6 +2,8 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
 using System.Net.Http;
 
@@ -65,5 +67,14 @@ namespace RESTFulSense.Brokers.MultipartFormDataContents
 
             return multipartFormDataContent;
         }
+
+        public MultipartFormDataContent AddContentHeader(
+            MultipartFormDataContent multipartFormDataContent,
+            string name,
+            string value)
+                {
+                    multipartFormDataContent.Headers.Add(name, value);
+                    return multipartFormDataContent;
+                }
     }
 }
