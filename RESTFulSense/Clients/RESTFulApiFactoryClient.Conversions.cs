@@ -28,6 +28,7 @@ namespace RESTFulSense.Clients
 
         private static StringContent ConvertToStringContent<T>(T content, string mediaType)
         {
+            var eno = content.ToString();
             return new StringContent(
                 content: content.ToString(),
                 encoding: Encoding.UTF8,

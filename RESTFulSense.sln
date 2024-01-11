@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RESTFulSense.WebAssembly", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RESTFulSense.WebAssembly.Tests", "RESTFulSense.WebAssembly.Tests\RESTFulSense.WebAssembly.Tests.csproj", "{6482315F-2B76-4DFA-8D93-0EB969F6D9DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleRunner", "ConsoleRunner\ConsoleRunner.csproj", "{E1D61B23-1B0E-46CE-801D-974BF9CBE163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRunner", "ConsoleRunner\ConsoleRunner.csproj", "{E1D61B23-1B0E-46CE-801D-974BF9CBE163}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooCommerceAPI", "..\..\1\WooCommerceAPI\WooCommerceAPI\WooCommerceAPI.csproj", "{CA2B9165-9474-42B0-A77F-31CA2E882912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{E1D61B23-1B0E-46CE-801D-974BF9CBE163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1D61B23-1B0E-46CE-801D-974BF9CBE163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1D61B23-1B0E-46CE-801D-974BF9CBE163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2B9165-9474-42B0-A77F-31CA2E882912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2B9165-9474-42B0-A77F-31CA2E882912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2B9165-9474-42B0-A77F-31CA2E882912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2B9165-9474-42B0-A77F-31CA2E882912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

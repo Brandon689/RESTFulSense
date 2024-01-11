@@ -5,121 +5,146 @@ using RESTFulSense.Clients;
 using RESTFulSense.Models.Attributes;
 using System.Net.Http.Headers;
 using System.Text;
+using WooCommerceAPI.Clients.WooCommerces;
+using WooCommerceAPI.Models.Configurations;
+using WooCommerceAPI.Models.Services.Foundations.Products;
 
 
 
 
-    
+
 
 DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { "../../../.env" }));
 
-
-
-var wordPressConfigurations = new WordPressConfigurations
+var wooCommerceConfigurations = new WooCommerceConfigurations
 {
-    UserName = Environment.GetEnvironmentVariable("WP_USER"),
-    AppPassword = Environment.GetEnvironmentVariable("WP_APP_PASSWORD"),
+    ApiKey = Environment.GetEnvironmentVariable("WC_CONSUMER_KEY"),
+    ApiSecret = Environment.GetEnvironmentVariable("WC_CONSUMER_SECRET"),
     ApiUrl = Environment.GetEnvironmentVariable("WC_STORE_URL")
 };
 
-var w = new WordPressBroker(wordPressConfigurations);
-string src = @"C:\Users\Brandon\Pictures\2184720.jpeg";
-ExternalMediaItemRequest mi = new ExternalMediaItemRequest()
+var wooCommerceClient = new WooCommerceClient(wooCommerceConfigurations);
+//var get = await wooCommerceClient.Products.GetProductAsync(50674);
+
+Product k = new()
 {
-    File = new FileStream(src, FileMode.Open),
-    FileName = src.Split("\\").Last(),
-    AltText = "porpoise"
+    Request = new ProductRequest()
+    {
+        Name = "Gigant",
+        RegularPrice = "711"
+    }
 };
 
-var a = await w.PostFormAsync<ExternalMediaItemRequest, ExternalMediaItemResponse>(
-    relativeUrl: $"{wordPressConfigurations.ApiUrl}/wp-json/wp/v2/media",
-    content: mi);
-
+var up = await wooCommerceClient.Products.UpdateProductAsync(k, 50674);
 
 ;
 
 
+//var wordPressConfigurations = new WordPressConfigurations
+//{
+//    UserName = Environment.GetEnvironmentVariable("WP_USER"),
+//    AppPassword = Environment.GetEnvironmentVariable("WP_APP_PASSWORD"),
+//    ApiUrl = Environment.GetEnvironmentVariable("WC_STORE_URL")
+//};
 
-internal class ExternalMediaItemRequest
-{
-    [RESTFulStreamContent("file")]
-    public Stream File { get; set; }
+//var w = new WordPressBroker(wordPressConfigurations);
+//string src = @"C:\Users\Brandon\Pictures\2184720.jpeg";
+//ExternalMediaItemRequest mi = new ExternalMediaItemRequest()
+//{
+//    File = new FileStream(src, FileMode.Open),
+//    FileName = src.Split("\\").Last(),
+//    AltText = "porpoise"
+//};
 
-    [RESTFulFileName("file")]
-    public string FileName { get; set; }
-
-    //[RESTFulStringContent("Alt-Text")]
-    //public string AltText { get; set; }
-
-    [RESTFulContentHeader("Alt-Text")]
-    public string AltText { get; set; }
-}
+//var a = await w.PostFormAsync<ExternalMediaItemRequest, ExternalMediaItemResponse>(
+//    relativeUrl: $"{wordPressConfigurations.ApiUrl}/wp-json/wp/v2/media",
+//    content: mi);
 
 
-public class WordPressConfigurations
-{
-    public string ApiUrl { get; set; }
-    public string UserName { get; set; }
-    public string AppPassword { get; set; }
-}
-
-internal partial class WordPressBroker
-{
-    private readonly WordPressConfigurations wordPressConfigurations;
-    private readonly IRESTFulApiFactoryClient apiClient;
-    private readonly HttpClient httpClient;
-
-    public WordPressBroker(WordPressConfigurations wordPressConfigurations)
-    {
-        this.wordPressConfigurations = wordPressConfigurations;
-        this.httpClient = SetupHttpClient();
-        this.apiClient = SetupApiClient();
-    }
-
-    public async ValueTask<TResult> PostFormAsync<TRequest, TResult>(string relativeUrl, TRequest content)
-        where TRequest : class
-    {
-        return await this.apiClient.PostFormAsync<TRequest, TResult>(
-            relativeUrl,
-            content);
-    }
-
-    private HttpClient SetupHttpClient()
-    {
-        var httpClient = new HttpClient()
-        {
-            BaseAddress = new Uri(uriString: this.wordPressConfigurations.ApiUrl),
-        };
-        httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue(
-                scheme: "Basic",
-                parameter: Convert.ToBase64String(Encoding.UTF8.GetBytes($"{this.wordPressConfigurations.UserName}:{this.wordPressConfigurations.AppPassword}")));
-
-        return httpClient;
-    }
-
-    private IRESTFulApiFactoryClient SetupApiClient() =>
-        new RESTFulApiFactoryClient(this.httpClient);
-}
+//;
 
 
 
+//internal class ExternalMediaItemRequest
+//{
+//    [RESTFulStreamContent("file")]
+//    public Stream File { get; set; }
+
+//    [RESTFulFileName("file")]
+//    public string FileName { get; set; }
+
+//    //[RESTFulStringContent("Alt-Text")]
+//    //public string AltText { get; set; }
+
+//    [RESTFulContentHeader("Alt-Text")]
+//    public string AltText { get; set; }
+//}
+
+
+//public class WordPressConfigurations
+//{
+//    public string ApiUrl { get; set; }
+//    public string UserName { get; set; }
+//    public string AppPassword { get; set; }
+//}
+
+//internal partial class WordPressBroker
+//{
+//    private readonly WordPressConfigurations wordPressConfigurations;
+//    private readonly IRESTFulApiFactoryClient apiClient;
+//    private readonly HttpClient httpClient;
+
+//    public WordPressBroker(WordPressConfigurations wordPressConfigurations)
+//    {
+//        this.wordPressConfigurations = wordPressConfigurations;
+//        this.httpClient = SetupHttpClient();
+//        this.apiClient = SetupApiClient();
+//    }
+
+//    public async ValueTask<TResult> PostFormAsync<TRequest, TResult>(string relativeUrl, TRequest content)
+//        where TRequest : class
+//    {
+//        return await this.apiClient.PostFormAsync<TRequest, TResult>(
+//            relativeUrl,
+//            content);
+//    }
+
+//    private HttpClient SetupHttpClient()
+//    {
+//        var httpClient = new HttpClient()
+//        {
+//            BaseAddress = new Uri(uriString: this.wordPressConfigurations.ApiUrl),
+//        };
+//        httpClient.DefaultRequestHeaders.Authorization =
+//            new AuthenticationHeaderValue(
+//                scheme: "Basic",
+//                parameter: Convert.ToBase64String(Encoding.UTF8.GetBytes($"{this.wordPressConfigurations.UserName}:{this.wordPressConfigurations.AppPassword}")));
+
+//        return httpClient;
+//    }
+
+//    private IRESTFulApiFactoryClient SetupApiClient() =>
+//        new RESTFulApiFactoryClient(this.httpClient);
+//}
 
 
 
 
 
-public class ExternalMediaItemResponse
-{
-    [JsonProperty("id")]
-    public int Id { get; set; } = 0;
 
-    [JsonProperty("src")]
-    public string Src { get; set; } = string.Empty;
 
-    [JsonProperty("name")]
-    public string Name { get; set; } = string.Empty;
 
-    [JsonProperty("alt")]
-    public string Alt { get; set; } = string.Empty;
-}
+//public class ExternalMediaItemResponse
+//{
+//    [JsonProperty("id")]
+//    public int Id { get; set; } = 0;
+
+//    [JsonProperty("src")]
+//    public string Src { get; set; } = string.Empty;
+
+//    [JsonProperty("name")]
+//    public string Name { get; set; } = string.Empty;
+
+//    [JsonProperty("alt")]
+//    public string Alt { get; set; } = string.Empty;
+//}

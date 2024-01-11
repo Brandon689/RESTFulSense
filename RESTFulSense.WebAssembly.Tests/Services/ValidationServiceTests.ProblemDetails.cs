@@ -156,7 +156,7 @@ namespace RESTFulSense.WebAssembly.Tests.Services
             HttpResponseMessage notFoundResponseMessage =
                 CreateHttpResponseMessage(HttpStatusCode.NotFound, content);
 
-            notFoundResponseMessage.Content.Headers.Add("Content-Type", "text/json");
+            notFoundResponseMessage.Content.Headers.Add("Content-Type", "application/json");
 
             // when
             ValueTask validateHttpResponseTask =

@@ -40,7 +40,7 @@ namespace RESTFulSense.WebAssembly.Clients
         public async ValueTask PostContentWithNoResponseAsync<T>(
             string relativeUrl,
             T content,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString =
@@ -56,7 +56,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             T content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString =
@@ -71,7 +71,7 @@ namespace RESTFulSense.WebAssembly.Clients
         public ValueTask<T> PostContentAsync<T>(
             string relativeUrl,
             T content,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             return PostContentAsync<T, T>(relativeUrl, content, mediaType);
@@ -81,7 +81,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             T content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             return PostContentAsync<T, T>(relativeUrl, content, cancellationToken, mediaType);
@@ -91,7 +91,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             T content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
@@ -106,7 +106,7 @@ namespace RESTFulSense.WebAssembly.Clients
         public async ValueTask<TResult> PostContentAsync<TContent, TResult>(
             string relativeUrl,
             TContent content,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString =
@@ -124,7 +124,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             TContent content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
@@ -140,7 +140,7 @@ namespace RESTFulSense.WebAssembly.Clients
         public async ValueTask<T> PutContentAsync<T>(
             string relativeUrl,
             T content,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
@@ -157,7 +157,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             T content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
@@ -173,7 +173,7 @@ namespace RESTFulSense.WebAssembly.Clients
         public async ValueTask<TResult> PutContentAsync<TContent, TResult>(
             string relativeUrl,
             TContent content,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
@@ -190,7 +190,7 @@ namespace RESTFulSense.WebAssembly.Clients
             string relativeUrl,
             TContent content,
             CancellationToken cancellationToken,
-            string mediaType = "text/json",
+            string mediaType = "application/json",
             bool ignoreDefaultValues = false)
         {
             HttpContent contentString = ConvertToHttpContent(content, mediaType, ignoreDefaultValues);
