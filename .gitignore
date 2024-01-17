@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /ConsoleRunner/.env
 /ConsoleRunner/ConsoleRunner.csproj
+/RESTFulSense/RESTFulSense.csproj
